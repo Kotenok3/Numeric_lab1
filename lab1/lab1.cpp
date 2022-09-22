@@ -1,15 +1,20 @@
 ﻿#include <iostream>
 
 
-double Fun(double x) {
+double FunA(double x) {
 
     return 3.3 * x * x * x * x + 3 / (0.02 + x * x);
+}
+
+double FunB(double x) {
+
+    return  2.7 * std::pow(std::sin(x), 3) + 3.3 * std::pow(std::cos(x), 3);
 }
 
 void Print(std::string name,double esp, double point, int counter){
 
     std::cout << "Method " << name << std::endl;
-    std::cout << "Eps = " << esp << "\nPoint min = " << point << "\nFunction value to min point "<< Fun(point) << "\nCounter = " << counter << std::endl;
+    std::cout << "Eps = " << esp << "\nPoint min = " << point << "\nFunction value to min point "<< FunA(point) << "\nCounter = " << counter << std::endl;
 }
 
 void Dichotomy(double esp, double a,double b, double delta = 0.001){
@@ -19,7 +24,7 @@ void Dichotomy(double esp, double a,double b, double delta = 0.001){
         x1 = (a + b - delta) / 2;
         x2 = (a + b + delta) / 2;
 
-        if (Fun(x1) <= Fun(x2)) 
+        if (FunA(x1) <= FunA(x2)) 
             b = x2;
         else 
             a = x1;
@@ -37,7 +42,7 @@ void GoldenSection(double esp, double a, double b) {
         x1 = a + (3 - std::sqrt(5)) * (b - a) / 2;
         x2 = a + (std::sqrt(5) - 1) * (b - a) / 2;
 
-        if (Fun(x1) <= Fun(x2))
+        if (FunA(x1) <= FunA(x2))
             b = x2;
         else
             a = x1;
@@ -50,8 +55,6 @@ void GoldenSection(double esp, double a, double b) {
 
 int main()
 {
-    std::cout << Fun(0) << std::endl;
-
     std::cout << "Input interval" << std::endl;
     double a, b;
     std::cin >> a >> b;
