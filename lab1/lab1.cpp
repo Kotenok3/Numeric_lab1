@@ -24,7 +24,7 @@ void Print(std::string name, double(*Fun)(double), double esp, double point, int
     std::string fun = Fun == FunA ? "FunA" : "FunB"; std::string operation = Operation == Min ? "Min" : "Max";
     std::cout << "Method " << name << std::endl;
     std::cout << fun << std::endl;
-    std::cout << "Eps = " << esp << "\nPoint " << operation << " = " << point << "\nCounter = " << counter << std::endl;
+    std::cout << "Eps = " << esp << "\nPoint " << operation << " = " << point << "\nFunction value in point " << Fun(point) << "\nCounter = " << counter << std::endl;
 }
 
 void Indent(int n = 1) {
@@ -77,14 +77,14 @@ int main()
     double(*Fun)(double) = FunA;
 
 
-    for (double esp = 0.001; esp >= 0.0001; esp /= 10) {
+    for (double esp = 0.001; esp >= 0.00001; esp /= 100) {
         Dichotomy(Fun, esp, a, b, esp);
         std::cout << "\n\n";
     }
 
     Indent();
 
-    for (double esp = 0.001; esp >= 0.0001; esp /= 10) {
+    for (double esp = 0.001; esp >= 0.00001; esp /= 100) {
         GoldenSection(Fun, esp, a, b);
         std::cout << "\n\n";
     }
@@ -103,7 +103,7 @@ int main()
     std::cout << "\n\n";
 
     
-    for (double esp = 0.001; esp >= 0.0001; esp /= 10) {
+    for (double esp = 0.001; esp >= 0.00001; esp /= 100) {
         for (int i = 0; i < intervals.size()-1; i++) {
             Dichotomy(Fun, esp, intervals[i], intervals[i + 1], esp, i % 2 == 0 ? Max : Min);
             std::cout << "\n\n";
@@ -112,7 +112,7 @@ int main()
     }
 
 
-    for (double esp = 0.001; esp >= 0.0001; esp /= 10) {
+    for (double esp = 0.001; esp >= 0.00001; esp /= 100) {
         for (int i = 0; i < intervals.size()-1; i++) {
             GoldenSection(Fun, esp, intervals[i], intervals[i + 1], i % 2 == 0 ? Max : Min);
             std::cout << "\n\n";
